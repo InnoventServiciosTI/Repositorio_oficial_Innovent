@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agente de IA · Generador de Sitios Web | Innovent Servicios TI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+  :root{
+    --cyan:#00d9ff;
+    --magenta:#b026ff;
+    --bg:#02041a;
+    --card:#0d1226;
+    --text:#e8edf8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:radial-gradient(circle at 15% 10%, rgba(0,190,255,.18), transparent 45%),
+               radial-gradient(circle at 85% 90%, rgba(176,38,255,.16), transparent 45%),
+               var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    padding:40px 20px;
+  }
+  .wrap{max-width:820px;margin:0 auto;}
+  h1{
+    font-size:clamp(28px,4vw,42px);
+    font-weight:800;
+    margin-bottom:6px;
+    background:linear-gradient(90deg,var(--cyan),var(--magenta));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  p.subtitle{color:#9db3d6;margin-top:0;margin-bottom:32px;}
+
+  form{
+    background:var(--card);
+    border:1px solid rgba(0,217,255,.25);
+    border-radius:20px;
+    padding:28px;
+    display:grid;
+    gap:18px;
+  }
+  label{font-size:14px;font-weight:600;color:#bcd0ee;margin-bottom:6px;display:block;}
+  input, select, textarea{
+    width:100%;
+    padding:12px 14px;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,.12);
+    background:#070b1c;
+    color:var(--text);
+    font-family:inherit;
+    font-size:15px;
+  }
+  input:focus, select:focus, textarea:focus{outline:2px solid var(--cyan);}
+  textarea{resize:vertical;min-height:70px;}
+
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media(max-width:600px){.row2{grid-template-columns:1fr;}}
+
+  button{
+    margin-top:6px;
+    padding:15px 20px;
+    border:none;
+    border-radius:14px;
+    font-family:inherit;
+    font-weight:700;
+    font-size:16px;
+    color:#02041a;
+    background:linear-gradient(90deg,var(--cyan),var(--magenta));
+    cursor:pointer;
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  button:hover{transform:translateY(-2px);}
+  button:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+
+  #estado{margin-top:14px;font-size:14px;color:#9db3d6;min-height:20px;}
+
+  #resultado{margin-top:34px;display:none;}
+  #resultado h2{font-size:20px;margin-bottom:12px;}
+  .preview-box{
+    border:1px solid rgba(0,217,255,.3);
+    border-radius:16px;
+    overflow:hidden;
+    background:#fff;
+    height:600px;
+  }
+  .preview-box iframe{width:100%;height:100%;border:0;}
+
+  .acciones{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+  .acciones button{flex:1;min-width:180px;}
+  .btn-secundario{background:transparent;border:1px solid var(--cyan);color:var(--cyan);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Generador de Sitios Web con IA</h1>
+  <p class="subtitle">Cuéntanos sobre tu negocio y nuestro agente de IA creará tu sitio web en segundos.</p>
+
+  <form id="form-agente">
+    <div>
+      <label for="negocio">Nombre de tu negocio *</label>
+      <input id="negocio" type="text" placeholder="Ej. Panadería La Espiga" required />
+    </div>
+
+    <div class="row2">
+      <div>
+        <label for="rubro">Rubro / industria *</label>
+        <input id="rubro" type="text" placeholder="Ej. Panadería artesanal" required />
+      </div>
+      <div>
+        <label for="tono">Tono de comunicación</label>
+        <select id="tono">
+          <option value="profesional y cercano">Profesional y cercano</option>
+          <option value="formal y corporativo">Formal y corporativo</option>
+          <option value="juvenil y divertido">Juvenil y divertido</option>
+          <option value="elegante y minimalista">Elegante y minimalista</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label for="colores">Paleta de colores preferida (opcional)</label>
+      <input id="colores" type="text" placeholder="Ej. tonos tierra y verde oliva" />
+    </div>
+
+    <div>
+      <label for="secciones">Secciones que necesitas (opcional)</label>
+      <textarea id="secciones" placeholder="Ej. Inicio, Menú, Nosotros, Testimonios, Contacto"></textarea>
+    </div>
+
+    <button type="submit" id="btn-generar">✨ Generar mi sitio web</button>
+    <div id="estado"></div>
+  </form>
+
+  <div id="resultado">
+    <h2>Vista previa de tu sitio</h2>
+    <div class="preview-box"><iframe id="iframe-preview"></iframe></div>
+    <div class="acciones">
+      <button id="btn-descargar">⬇️ Descargar HTML</button>
+      <button id="btn-regenerar" class="btn-secundario" type="button">🔄 Generar otra versión</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const form = document.getElementById('form-agente');
+const estado = document.getElementById('estado');
+const btnGenerar = document.getElementById('btn-generar');
+const resultado = document.getElementById('resultado');
+const iframe = document.getElementById('iframe-preview');
+let ultimoHTML = '';
+
+async function generarSitio(){
+  const payload = {
+    negocio: document.getElementById('negocio').value.trim(),
+    rubro: document.getElementById('rubro').value.trim(),
+    colores: document.getElementById('colores').value.trim(),
+    secciones: document.getElementById('secciones').value.trim(),
+    tono: document.getElementById('tono').value,
+  };
+
+  btnGenerar.disabled = true;
+  estado.textContent = 'Generando tu sitio web con IA... esto puede tardar unos segundos ⏳';
+
+  try {
+    const resp = await fetch('/.netlify/functions/generar-sitio', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await resp.json();
+
+    if (!resp.ok) throw new Error(data.error || 'Error desconocido');
+
+    ultimoHTML = data.html;
+    iframe.srcdoc = ultimoHTML;
+    resultado.style.display = 'block';
+    estado.textContent = '¡Listo! Tu sitio se generó correctamente ✅';
+    resultado.scrollIntoView({ behavior: 'smooth' });
+  } catch (err) {
+    estado.textContent = 'Ocurrió un error: ' + err.message;
+  } finally {
+    btnGenerar.disabled = false;
+  }
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  generarSitio();
+});
+
+document.getElementById('btn-regenerar').addEventListener('click', generarSitio);
+
+document.getElementById('btn-descargar').addEventListener('click', () => {
+  const blob = new Blob([ultimoHTML], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'mi-sitio-web.html';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
