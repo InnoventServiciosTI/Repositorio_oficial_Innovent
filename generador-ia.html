@@ -1,52 +1,310 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Agente de IA · Generador de Sitios Web | Innovent Servicios TI</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  :root{
+<title>Generador de Sitios Web con IA | Innovent Servicios TI</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root{
     --cyan:#00d9ff;
     --magenta:#b026ff;
     --bg:#02041a;
     --card:#0d1226;
+    --card2:#111936;
     --text:#e8edf8;
-  }
-  *{box-sizing:border-box;}
-  body{
+    --muted:#9db3d6;
+    --success:#25d366;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
     margin:0;
     font-family:'Poppins',sans-serif;
-    background:radial-gradient(circle at 15% 10%, rgba(0,190,255,.18), transparent 45%),
-               radial-gradient(circle at 85% 90%, rgba(176,38,255,.16), transparent 45%),
-               var(--bg);
+    background:
+        radial-gradient(circle at 15% 10%,rgba(0,190,255,.18),transparent 45%),
+        radial-gradient(circle at 85% 90%,rgba(176,38,255,.16),transparent 45%),
+        var(--bg);
     color:var(--text);
     min-height:100vh;
     padding:40px 20px;
-  }
-  .wrap{max-width:820px;margin:0 auto;}
-  h1{
-    font-size:clamp(28px,4vw,42px);
+}
+
+.wrap{
+    max-width:1100px;
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.logo{
+    font-size:18px;
     font-weight:800;
-    margin-bottom:6px;
+    letter-spacing:2px;
+    color:white;
+    margin-bottom:15px;
+}
+
+.logo span{
     background:linear-gradient(90deg,var(--cyan),var(--magenta));
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
-  }
-  p.subtitle{color:#9db3d6;margin-top:0;margin-bottom:32px;}
+}
 
-  form{
+h1{
+    font-size:clamp(28px,4vw,44px);
+    font-weight:800;
+    margin:0 0 8px;
+    background:linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--magenta)
+    );
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.subtitle{
+    color:var(--muted);
+    margin:0 auto;
+    max-width:700px;
+}
+
+/* =========================
+   PLANES
+========================= */
+
+.planes-section{
+    margin-bottom:35px;
+}
+
+.planes-title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.planes-title h2{
+    margin:0;
+    font-size:28px;
+}
+
+.planes-title p{
+    color:var(--muted);
+    margin-top:8px;
+}
+
+.planes-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.plan{
+    position:relative;
+    background:linear-gradient(
+        145deg,
+        rgba(13,18,38,.98),
+        rgba(17,25,54,.98)
+    );
+
+    border:1px solid rgba(0,217,255,.18);
+    border-radius:20px;
+    padding:25px;
+    transition:.3s;
+}
+
+.plan:hover{
+    transform:translateY(-6px);
+    border-color:var(--cyan);
+    box-shadow:0 15px 40px rgba(0,217,255,.12);
+}
+
+.plan.selected{
+    border:2px solid var(--cyan);
+    box-shadow:
+        0 0 0 3px rgba(0,217,255,.08),
+        0 15px 45px rgba(0,217,255,.15);
+}
+
+.plan.destacado{
+    border-color:var(--magenta);
+}
+
+.badge{
+    position:absolute;
+    top:-12px;
+    right:20px;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:700;
+
+    background:linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--magenta)
+    );
+
+    color:#02041a;
+}
+
+.plan h3{
+    margin:0 0 8px;
+    font-size:23px;
+}
+
+.plan-price{
+    font-size:24px;
+    font-weight:800;
+    margin-bottom:18px;
+
+    background:linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--magenta)
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+}
+
+.plan ul{
+    padding:0;
+    margin:0 0 22px;
+    list-style:none;
+}
+
+.plan li{
+    margin:10px 0;
+    color:#c7d5ed;
+    font-size:14px;
+}
+
+.plan li::before{
+    content:"✓";
+    color:var(--cyan);
+    font-weight:bold;
+    margin-right:8px;
+}
+
+.btn-plan{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:12px;
+
+    background:linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--magenta)
+    );
+
+    color:#02041a;
+    font-family:inherit;
+    font-weight:800;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-plan:hover{
+    transform:translateY(-2px);
+}
+
+/* =========================
+   PLAN SELECCIONADO
+========================= */
+
+.plan-selected{
+    display:none;
+
+    background:#071026;
+    border:1px solid rgba(0,217,255,.3);
+    border-radius:15px;
+
+    padding:16px 20px;
+    margin-bottom:25px;
+}
+
+.plan-selected.active{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.plan-selected strong{
+    color:var(--cyan);
+}
+
+.change-plan{
+    background:transparent;
+    border:1px solid var(--cyan);
+    color:var(--cyan);
+    border-radius:8px;
+    padding:7px 12px;
+    cursor:pointer;
+}
+
+/* =========================
+   GENERADOR
+========================= */
+
+.generator-container{
+    display:none;
+}
+
+.generator-container.active{
+    display:block;
+}
+
+form{
     background:var(--card);
     border:1px solid rgba(0,217,255,.25);
     border-radius:20px;
     padding:28px;
     display:grid;
     gap:18px;
-  }
-  label{font-size:14px;font-weight:600;color:#bcd0ee;margin-bottom:6px;display:block;}
-  input, select, textarea{
+}
+
+.form-title{
+    margin:0 0 5px;
+    font-size:22px;
+}
+
+.form-description{
+    color:var(--muted);
+    margin:0 0 10px;
+    font-size:14px;
+}
+
+label{
+    font-size:14px;
+    font-weight:600;
+    color:#bcd0ee;
+    margin-bottom:6px;
+    display:block;
+}
+
+input,
+select,
+textarea{
     width:100%;
     padding:12px 14px;
     border-radius:10px;
@@ -55,156 +313,1299 @@
     color:var(--text);
     font-family:inherit;
     font-size:15px;
-  }
-  input:focus, select:focus, textarea:focus{outline:2px solid var(--cyan);}
-  textarea{resize:vertical;min-height:70px;}
+}
 
-  .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-  @media(max-width:600px){.row2{grid-template-columns:1fr;}}
+input:focus,
+select:focus,
+textarea:focus{
+    outline:2px solid var(--cyan);
+}
 
-  button{
+textarea{
+    resize:vertical;
+    min-height:90px;
+}
+
+.row2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.btn-generar{
     margin-top:6px;
     padding:15px 20px;
     border:none;
     border-radius:14px;
+
     font-family:inherit;
     font-weight:700;
     font-size:16px;
+
     color:#02041a;
-    background:linear-gradient(90deg,var(--cyan),var(--magenta));
+
+    background:linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--magenta)
+    );
+
     cursor:pointer;
-    transition:transform .15s ease, opacity .15s ease;
-  }
-  button:hover{transform:translateY(-2px);}
-  button:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+    transition:.15s;
+}
 
-  #estado{margin-top:14px;font-size:14px;color:#9db3d6;min-height:20px;}
+.btn-generar:hover{
+    transform:translateY(-2px);
+}
 
-  #resultado{margin-top:34px;display:none;}
-  #resultado h2{font-size:20px;margin-bottom:12px;}
-  .preview-box{
+.btn-generar:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+#estado{
+    font-size:14px;
+    color:var(--muted);
+    min-height:20px;
+}
+
+/* =========================
+   INFORMACION DE PLAN
+========================= */
+
+.payment-info{
+    margin-top:5px;
+    padding:15px;
+    border-radius:12px;
+
+    background:rgba(37,211,102,.08);
+    border:1px solid rgba(37,211,102,.25);
+
+    color:#bdeecb;
+    font-size:13px;
+}
+
+.payment-info strong{
+    color:#25d366;
+}
+
+/* =========================
+   RESULTADO
+========================= */
+
+#resultado{
+    margin-top:34px;
+    display:none;
+}
+
+#resultado h2{
+    font-size:20px;
+    margin-bottom:12px;
+}
+
+.preview-box{
     border:1px solid rgba(0,217,255,.3);
     border-radius:16px;
     overflow:hidden;
-    background:#fff;
+    background:white;
     height:600px;
-  }
-  .preview-box iframe{width:100%;height:100%;border:0;}
-
-  .acciones{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
-  .acciones button{flex:1;min-width:180px;}
-  .btn-secundario{background:transparent;border:1px solid var(--cyan);color:var(--cyan);}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <h1>Generador de Sitios Web con IA</h1>
-  <p class="subtitle">Cuéntanos sobre tu negocio y nuestro agente de IA creará tu sitio web en segundos.</p>
-
-  <form id="form-agente">
-    <div>
-      <label for="negocio">Nombre de tu negocio *</label>
-      <input id="negocio" type="text" placeholder="Ej. Panadería La Espiga" required />
-    </div>
-
-    <div class="row2">
-      <div>
-        <label for="rubro">Rubro / industria *</label>
-        <input id="rubro" type="text" placeholder="Ej. Panadería artesanal" required />
-      </div>
-      <div>
-        <label for="tono">Tono de comunicación</label>
-        <select id="tono">
-          <option value="profesional y cercano">Profesional y cercano</option>
-          <option value="formal y corporativo">Formal y corporativo</option>
-          <option value="juvenil y divertido">Juvenil y divertido</option>
-          <option value="elegante y minimalista">Elegante y minimalista</option>
-        </select>
-      </div>
-    </div>
-
-    <div>
-      <label for="colores">Paleta de colores preferida (opcional)</label>
-      <input id="colores" type="text" placeholder="Ej. tonos tierra y verde oliva" />
-    </div>
-
-    <div>
-      <label for="secciones">Secciones que necesitas (opcional)</label>
-      <textarea id="secciones" placeholder="Ej. Inicio, Menú, Nosotros, Testimonios, Contacto"></textarea>
-    </div>
-
-    <button type="submit" id="btn-generar">✨ Generar mi sitio web</button>
-    <div id="estado"></div>
-  </form>
-
-  <div id="resultado">
-    <h2>Vista previa de tu sitio</h2>
-    <div class="preview-box"><iframe id="iframe-preview"></iframe></div>
-    <div class="acciones">
-      <button id="btn-descargar">⬇️ Descargar HTML</button>
-      <button id="btn-regenerar" class="btn-secundario" type="button">🔄 Generar otra versión</button>
-    </div>
-  </div>
-</div>
-
-<script>
-const form = document.getElementById('form-agente');
-const estado = document.getElementById('estado');
-const btnGenerar = document.getElementById('btn-generar');
-const resultado = document.getElementById('resultado');
-const iframe = document.getElementById('iframe-preview');
-let ultimoHTML = '';
-
-async function generarSitio(){
-  const payload = {
-    negocio: document.getElementById('negocio').value.trim(),
-    rubro: document.getElementById('rubro').value.trim(),
-    colores: document.getElementById('colores').value.trim(),
-    secciones: document.getElementById('secciones').value.trim(),
-    tono: document.getElementById('tono').value,
-  };
-
-  btnGenerar.disabled = true;
-  estado.textContent = 'Generando tu sitio web con IA... esto puede tardar unos segundos ⏳';
-
-  try {
-    const resp = await fetch('/.netlify/functions/generar-sitio', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    const data = await resp.json();
-
-    if (!resp.ok) throw new Error(data.error || 'Error desconocido');
-
-    ultimoHTML = data.html;
-    iframe.srcdoc = ultimoHTML;
-    resultado.style.display = 'block';
-    estado.textContent = '¡Listo! Tu sitio se generó correctamente ✅';
-    resultado.scrollIntoView({ behavior: 'smooth' });
-  } catch (err) {
-    estado.textContent = 'Ocurrió un error: ' + err.message;
-  } finally {
-    btnGenerar.disabled = false;
-  }
 }
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  generarSitio();
-});
+.preview-box iframe{
+    width:100%;
+    height:100%;
+    border:0;
+}
 
-document.getElementById('btn-regenerar').addEventListener('click', generarSitio);
+.acciones{
+    display:flex;
+    gap:12px;
+    margin-top:14px;
+    flex-wrap:wrap;
+}
 
-document.getElementById('btn-descargar').addEventListener('click', () => {
-  const blob = new Blob([ultimoHTML], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'mi-sitio-web.html';
-  a.click();
-  URL.revokeObjectURL(url);
-});
+.acciones button{
+    flex:1;
+    min-width:180px;
+    padding:14px;
+    border-radius:12px;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:700;
+}
+
+.btn-descargar{
+    border:none;
+
+    background:linear-gradient(
+        90deg,
+        var(--cyan),
+        var(--magenta)
+    );
+}
+
+.btn-secundario{
+    background:transparent;
+    border:1px solid var(--cyan);
+    color:var(--cyan);
+}
+
+/* ================================
+   PLANES - DISEÑO WEB PROFESIONAL
+================================ */
+
+.planes-web {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.planes-web h2 {
+    margin: 0 0 8px;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    background: linear-gradient(90deg, #00d9ff, #b026ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.planes-web .sub {
+    margin: 0 0 35px;
+    color: #9db3d6;
+    font-size: 16px;
+}
+
+/* CONTENEDOR */
+
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* GRID DE PLANES */
+
+.carousel-track {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+/* TARJETA */
+
+.plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    min-width: 0;
+
+    padding: 28px 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13, 18, 38, 0.98),
+            rgba(17, 25, 54, 0.98)
+        );
+
+    border: 1px solid rgba(0, 217, 255, 0.18);
+    border-radius: 20px;
+
+    color: #e8edf8;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.plan:hover {
+    transform: translateY(-7px);
+
+    border-color: #00d9ff;
+
+    box-shadow:
+        0 15px 40px rgba(0, 217, 255, 0.12);
+}
+
+/* PLAN DESTACADO */
+
+.plan.destacado {
+    border: 1px solid #b026ff;
+
+    box-shadow:
+        0 10px 35px rgba(176, 38, 255, 0.12);
+}
+
+.plan.destacado:hover {
+    border-color: #b026ff;
+
+    box-shadow:
+        0 18px 45px rgba(176, 38, 255, 0.20);
+}
+
+/* BADGE */
+
+.badge {
+    position: absolute;
+
+    top: -12px;
+    right: 20px;
+
+    padding: 5px 13px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00d9ff,
+            #b026ff
+        );
+
+    color: #02041a;
+
+    white-space: nowrap;
+}
+
+/* TITULO */
+
+.plan h3 {
+    margin: 0 0 8px;
+
+    font-size: 23px;
+    font-weight: 800;
+
+    color: #ffffff;
+}
+
+/* PRECIO */
+
+.plan h4 {
+    margin: 0 0 20px;
+
+    font-size: 23px;
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            90deg,
+            #00d9ff,
+            #b026ff
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+/* LISTA */
+
+.plan ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    flex: 1;
+}
+
+.plan li {
+    position: relative;
+
+    margin: 11px 0;
+
+    padding-left: 23px;
+
+    color: #c7d5ed;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.plan li::before {
+    content: "✓";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    color: #00d9ff;
+
+    font-weight: 800;
+}
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 1050px) {
+
+    .carousel-track {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .plan {
+        padding: 25px 22px;
+    }
+
+}
+
+/* ================================
+   MÓVILES
+================================ */
+
+@media (max-width: 650px) {
+
+    .planes-web {
+        padding: 30px 15px;
+    }
+
+    .planes-web h2 {
+        font-size: 30px;
+    }
+
+    .planes-web .sub {
+        font-size: 14px;
+        margin-bottom: 28px;
+    }
+
+    .carousel-track {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .plan {
+        width: 100%;
+        padding: 25px 22px;
+
+        border-radius: 18px;
+    }
+
+    .plan h3 {
+        font-size: 22px;
+    }
+
+    .plan h4 {
+        font-size: 22px;
+    }
+
+    .plan li {
+        font-size: 14px;
+    }
+
+}
+
+/* ================================
+   MÓVILES PEQUEÑOS
+================================ */
+
+@media (max-width: 400px) {
+
+    .planes-web {
+        padding: 25px 12px;
+    }
+
+    .plan {
+        padding: 22px 18px;
+    }
+
+    .badge {
+        right: 15px;
+        font-size: 10px;
+    }
+
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+    .planes-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    body{
+        padding:25px 15px;
+    }
+
+    .planes-grid{
+        grid-template-columns:1fr;
+    }
+
+    .row2{
+        grid-template-columns:1fr;
+    }
+
+    form{
+        padding:20px;
+    }
+
+    .plan-selected.active{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .preview-box{
+        height:450px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="header">
+
+    <div class="logo">
+        <span>INNOVENT</span> SERVICIOS TI
+    </div>
+
+    <h1>
+        Generador de Sitios Web con IA
+    </h1>
+
+    <p class="subtitle">
+        Crea un sitio web profesional para tu negocio utilizando
+        inteligencia artificial.
+    </p>
+
+</div>
+
+
+<!-- =========================
+     PLANES
+========================= -->
+
+<section class="planes-section" id="planes">
+
+    <div class="planes-title">
+
+        <h2>
+            Nuestros Planes y Tarifas
+        </h2>
+
+        <p>
+            Selecciona el plan que mejor se adapte a las necesidades
+            de tu negocio.
+        </p>
+
+    </div>
+
+
+    <div class="planes-grid">
+
+
+        <!-- BÁSICO -->
+
+        <div class="plan" data-plan="Básico">
+
+            <h3>Básico</h3>
+
+            <div class="plan-price">
+                $400.000 COP
+            </div>
+
+            <ul>
+                <li>Página web sencilla</li>
+                <li>Diseño responsivo</li>
+                <li>Entrega rápida</li>
+                <li>Hosting</li>
+                <li>Soporte básico</li>
+            </ul>
+
+            <button
+                type="button"
+                class="btn-plan"
+                onclick="seleccionarPlan('Básico',400000)"
+            >
+                Seleccionar plan
+            </button>
+
+        </div>
+
+
+        <!-- MARCA DIGITAL -->
+
+        <div class="plan" data-plan="Marca Digital">
+
+            <h3>Marca Digital</h3>
+
+            <div class="plan-price">
+                $800.000 COP
+            </div>
+
+            <ul>
+                <li>Web hasta 5 secciones</li>
+                <li>Diseño personalizado</li>
+                <li>SEO básico</li>
+                <li>Hosting</li>
+                <li>Asesoría branding</li>
+            </ul>
+
+            <button
+                type="button"
+                class="btn-plan"
+                onclick="seleccionarPlan('Marca Digital',800000)"
+            >
+                Seleccionar plan
+            </button>
+
+        </div>
+
+
+        <!-- INTELIGENTE -->
+
+        <div class="plan destacado" data-plan="Inteligente">
+
+            <span class="badge">
+                Más popular
+            </span>
+
+            <h3>Inteligente</h3>
+
+            <div class="plan-price">
+                $1.500.000 COP
+            </div>
+
+            <ul>
+                <li>Sitio completo</li>
+                <li>Automatización</li>
+                <li>SEO avanzado</li>
+                <li>Hosting</li>
+                <li>Soporte 3 meses</li>
+                <li>Asesor Online</li>
+            </ul>
+
+            <button
+                type="button"
+                class="btn-plan"
+                onclick="seleccionarPlan('Inteligente',1500000)"
+            >
+                Seleccionar plan
+            </button>
+
+        </div>
+
+
+        <!-- PREMIUM -->
+
+        <div class="plan" data-plan="Premium">
+
+            <h3>Premium</h3>
+
+            <div class="plan-price">
+                $3.450.000 COP
+            </div>
+
+            <ul>
+                <li>Tienda virtual</li>
+                <li>Pagos integrados</li>
+                <li>Panel administrativo</li>
+                <li>Hosting</li>
+                <li>Soporte prioritario</li>
+                <li>Asesor Online</li>
+            </ul>
+
+            <button
+                type="button"
+                class="btn-plan"
+                onclick="seleccionarPlan('Premium',3450000)"
+            >
+                Seleccionar plan
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PLAN SELECCIONADO
+========================= -->
+
+<div
+    id="plan-selected"
+    class="plan-selected"
+>
+
+    <div>
+
+        Plan seleccionado:
+
+        <strong id="plan-name">
+            -
+        </strong>
+
+        ·
+
+        <strong id="plan-price">
+            $0 COP
+        </strong>
+
+    </div>
+
+    <button
+        type="button"
+        class="change-plan"
+        onclick="cambiarPlan()"
+    >
+        Cambiar plan
+    </button>
+
+</div>
+
+
+<!-- =========================
+     GENERADOR
+========================= -->
+
+<section
+    id="generator-container"
+    class="generator-container"
+>
+
+    <form id="form-agente">
+
+        <div>
+
+            <h2 class="form-title">
+                Configura tu sitio web
+            </h2>
+
+            <p class="form-description">
+                Completa la información y nuestro agente de IA
+                generará una propuesta de sitio web.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <label for="negocio">
+                Nombre de tu negocio *
+            </label>
+
+            <input
+                id="negocio"
+                type="text"
+                placeholder="Ej. Panadería La Espiga"
+                required
+            >
+
+        </div>
+
+
+        <div class="row2">
+
+            <div>
+
+                <label for="rubro">
+                    Rubro / industria *
+                </label>
+
+                <input
+                    id="rubro"
+                    type="text"
+                    placeholder="Ej. Panadería artesanal"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="tono">
+                    Tono de comunicación
+                </label>
+
+                <select id="tono">
+
+                    <option value="profesional y cercano">
+                        Profesional y cercano
+                    </option>
+
+                    <option value="formal y corporativo">
+                        Formal y corporativo
+                    </option>
+
+                    <option value="juvenil y divertido">
+                        Juvenil y divertido
+                    </option>
+
+                    <option value="elegante y minimalista">
+                        Elegante y minimalista
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <label for="colores">
+                Paleta de colores preferida
+            </label>
+
+            <input
+                id="colores"
+                type="text"
+                placeholder="Ej. tonos tierra y verde oliva"
+            >
+
+        </div>
+
+
+        <div>
+
+            <label for="secciones">
+                Secciones que necesitas
+            </label>
+
+            <textarea
+                id="secciones"
+                placeholder="Ej. Inicio, Nosotros, Servicios, Testimonios, Contacto"
+            ></textarea>
+
+        </div>
+
+
+        <div>
+
+            <label for="objetivo">
+                Objetivo principal del sitio
+            </label>
+
+            <textarea
+                id="objetivo"
+                placeholder="Ej. Conseguir clientes, vender productos, mostrar servicios..."
+            ></textarea>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="btn-generar"
+            id="btn-generar"
+        >
+            ✨ Generar mi sitio web con IA
+        </button>
+
+
+        <div id="estado"></div>
+
+
+        <div class="payment-info">
+
+            <strong>
+                Plan activo:
+            </strong>
+
+            <span id="payment-plan">
+                Selecciona un plan para continuar.
+            </span>
+
+            <br><br>
+
+            El plan seleccionado será enviado al sistema
+            para validar el servicio contratado.
+
+        </div>
+
+    </form>
+
+</section>
+
+
+<!-- =========================
+     RESULTADO
+========================= -->
+
+<div id="resultado">
+
+    <h2>
+        Vista previa de tu sitio
+    </h2>
+
+    <div class="preview-box">
+
+        <iframe
+            id="iframe-preview"
+            title="Vista previa del sitio generado"
+        ></iframe>
+
+    </div>
+
+
+    <div class="acciones">
+
+        <button
+            id="btn-descargar"
+            class="btn-descargar"
+        >
+            ⬇️ Descargar HTML
+        </button>
+
+
+        <button
+            id="btn-regenerar"
+            class="btn-secundario"
+            type="button"
+        >
+            🔄 Generar otra versión
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   VARIABLES
+========================================== */
+
+const form =
+    document.getElementById('form-agente');
+
+const estado =
+    document.getElementById('estado');
+
+const btnGenerar =
+    document.getElementById('btn-generar');
+
+const resultado =
+    document.getElementById('resultado');
+
+const iframe =
+    document.getElementById('iframe-preview');
+
+const generatorContainer =
+    document.getElementById('generator-container');
+
+const planSelected =
+    document.getElementById('plan-selected');
+
+const planName =
+    document.getElementById('plan-name');
+
+const planPrice =
+    document.getElementById('plan-price');
+
+const paymentPlan =
+    document.getElementById('payment-plan');
+
+
+let ultimoHTML = '';
+
+
+let planActual = {
+    nombre:null,
+    precio:0
+};
+
+
+/* ==========================================
+   SELECCIONAR PLAN
+========================================== */
+
+function seleccionarPlan(nombre,precio){
+
+    planActual.nombre = nombre;
+
+    planActual.precio = precio;
+
+
+    /*
+       Quitar selección anterior
+    */
+
+    document
+        .querySelectorAll('.plan')
+        .forEach(plan => {
+
+            plan.classList.remove('selected');
+
+        });
+
+
+    /*
+       Buscar tarjeta seleccionada
+    */
+
+    const tarjeta =
+        document.querySelector(
+            `.plan[data-plan="${nombre}"]`
+        );
+
+
+    if(tarjeta){
+
+        tarjeta.classList.add('selected');
+
+    }
+
+
+    /*
+       Mostrar información
+    */
+
+    planName.textContent =
+        nombre;
+
+
+    planPrice.textContent =
+        `$${precio.toLocaleString('es-CO')} COP`;
+
+
+    paymentPlan.textContent =
+        `${nombre} — $${precio.toLocaleString('es-CO')} COP`;
+
+
+    /*
+       Mostrar plan seleccionado
+    */
+
+    planSelected.classList.add('active');
+
+
+    /*
+       Mostrar generador
+    */
+
+    generatorContainer.classList.add('active');
+
+
+    /*
+       Scroll automático
+    */
+
+    setTimeout(() => {
+
+        generatorContainer.scrollIntoView({
+            behavior:'smooth',
+            block:'start'
+        });
+
+    },100);
+
+}
+
+
+/* ==========================================
+   CAMBIAR PLAN
+========================================== */
+
+function cambiarPlan(){
+
+    planActual.nombre = null;
+
+    planActual.precio = 0;
+
+
+    generatorContainer.classList.remove('active');
+
+    planSelected.classList.remove('active');
+
+
+    document
+        .querySelectorAll('.plan')
+        .forEach(plan => {
+
+            plan.classList.remove('selected');
+
+        });
+
+
+    document
+        .getElementById('planes')
+        .scrollIntoView({
+            behavior:'smooth'
+        });
+
+}
+
+
+/* ==========================================
+   GENERAR SITIO
+========================================== */
+
+async function generarSitio(){
+
+    if(!planActual.nombre){
+
+        alert(
+            'Primero debes seleccionar un plan.'
+        );
+
+        return;
+
+    }
+
+
+    const payload = {
+
+        negocio:
+            document
+            .getElementById('negocio')
+            .value
+            .trim(),
+
+        rubro:
+            document
+            .getElementById('rubro')
+            .value
+            .trim(),
+
+        colores:
+            document
+            .getElementById('colores')
+            .value
+            .trim(),
+
+        secciones:
+            document
+            .getElementById('secciones')
+            .value
+            .trim(),
+
+        objetivo:
+            document
+            .getElementById('objetivo')
+            .value
+            .trim(),
+
+        tono:
+            document
+            .getElementById('tono')
+            .value,
+
+        /*
+           DATOS DEL PLAN
+        */
+
+        plan:
+            planActual.nombre,
+
+        precio:
+            planActual.precio
+
+    };
+
+
+    console.log(
+        'Datos enviados:',
+        payload
+    );
+
+
+    btnGenerar.disabled = true;
+
+
+    estado.textContent =
+        'Generando tu sitio web con IA... esto puede tardar unos segundos ⏳';
+
+
+    try{
+
+        const resp = await fetch(
+            '/.netlify/functions/generar-sitio',
+            {
+
+                method:'POST',
+
+                headers:{
+                    'Content-Type':
+                        'application/json'
+                },
+
+                body:
+                    JSON.stringify(payload)
+
+            }
+        );
+
+
+        const data =
+            await resp.json();
+
+
+        if(!resp.ok){
+
+            throw new Error(
+                data.error ||
+                'Error desconocido'
+            );
+
+        }
+
+
+        ultimoHTML =
+            data.html;
+
+
+        iframe.srcdoc =
+            ultimoHTML;
+
+
+        resultado.style.display =
+            'block';
+
+
+        estado.textContent =
+            '¡Listo! Tu sitio se generó correctamente ✅';
+
+
+        resultado.scrollIntoView({
+            behavior:'smooth'
+        });
+
+
+    }
+    catch(err){
+
+        console.error(err);
+
+        estado.textContent =
+            'Ocurrió un error: ' +
+            err.message;
+
+    }
+    finally{
+
+        btnGenerar.disabled =
+            false;
+
+    }
+
+}
+
+
+/* ==========================================
+   FORMULARIO
+========================================== */
+
+form.addEventListener(
+    'submit',
+    function(e){
+
+        e.preventDefault();
+
+        generarSitio();
+
+    }
+);
+
+
+/* ==========================================
+   REGENERAR
+========================================== */
+
+document
+    .getElementById('btn-regenerar')
+    .addEventListener(
+        'click',
+        generarSitio
+    );
+
+
+/* ==========================================
+   DESCARGAR HTML
+========================================== */
+
+document
+    .getElementById('btn-descargar')
+    .addEventListener(
+        'click',
+        () => {
+
+            if(!ultimoHTML){
+
+                alert(
+                    'Primero debes generar un sitio web.'
+                );
+
+                return;
+
+            }
+
+
+            const blob =
+                new Blob(
+                    [ultimoHTML],
+                    {
+                        type:'text/html'
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(blob);
+
+
+            const a =
+                document.createElement('a');
+
+
+            a.href =
+                url;
+
+
+            a.download =
+                'mi-sitio-web.html';
+
+
+            document.body.appendChild(a);
+
+
+            a.click();
+
+
+            document.body.removeChild(a);
+
+
+            URL.revokeObjectURL(url);
+
+        }
+    );
+
+
 </script>
+
 </body>
 </html>
