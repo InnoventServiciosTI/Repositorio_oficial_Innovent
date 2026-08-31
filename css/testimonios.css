@@ -1,0 +1,322 @@
+/* =================================
+   CONTENEDOR GENERAL
+================================= */
+
+.testimonios-section {
+  width: 100%;
+  padding: 70px 20px;
+  overflow: hidden;
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+.testimonios-header {
+  max-width: 850px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.testimonios-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+
+.testimonios-header h2 {
+  margin: 0 0 15px;
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.1;
+}
+
+.testimonios-header p {
+  margin: 0 auto;
+  max-width: 700px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =================================
+   VIEWPORT DEL CARRUSEL
+================================= */
+
+.testimonios-carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+
+/* =================================
+   TRACK
+================================= */
+
+.testimonios-grid {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+
+  will-change: transform;
+
+  user-select: none;
+  touch-action: pan-y;
+
+  cursor: grab;
+}
+
+.testimonios-grid:active {
+  cursor: grabbing;
+}
+
+
+/* =================================
+   TARJETAS
+================================= */
+
+.testimonio-card {
+
+  flex: 0 0 350px;
+
+  min-height: 330px;
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(0,0,0,.08);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+
+  display: flex;
+  flex-direction: column;
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
+
+
+/* Hover */
+
+.testimonio-card:hover {
+
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.13);
+}
+
+
+/* =================================
+   PARTE SUPERIOR
+================================= */
+
+.testimonio-top {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+}
+
+
+/* =================================
+   AVATAR
+================================= */
+
+.avatar {
+
+  width: 58px;
+
+  height: 58px;
+
+  min-width: 58px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  background: #eee;
+}
+
+.avatar img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* =================================
+   INFORMACIÓN
+================================= */
+
+.testimonio-info h3 {
+
+  margin: 0;
+
+  font-size: 16px;
+
+  line-height: 1.3;
+}
+
+.testimonio-info span {
+
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 13px;
+
+  opacity: .65;
+}
+
+
+/* =================================
+   ESTRELLAS
+================================= */
+
+.estrellas {
+
+  font-size: 18px;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 15px;
+}
+
+
+/* =================================
+   TEXTO
+================================= */
+
+.testimonio-texto {
+
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  margin: 0;
+
+  flex: 1;
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+.testimonio-footer {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-top: 22px;
+
+  padding-top: 15px;
+
+  border-top: 1px solid rgba(0,0,0,.08);
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 900px) {
+
+  .testimonio-card {
+
+    flex-basis: 310px;
+
+  }
+
+}
+
+
+/* =================================
+   MÓVIL
+================================= */
+
+@media (max-width: 600px) {
+
+  .testimonios-section {
+
+    padding: 50px 15px;
+
+  }
+
+  .testimonios-header {
+
+    margin-bottom: 30px;
+
+  }
+
+  .testimonios-header p {
+
+    font-size: 14px;
+
+  }
+
+  .testimonio-card {
+
+    flex: 0 0 calc(100vw - 40px);
+
+    max-width: 360px;
+
+    min-height: 310px;
+
+    padding: 22px;
+
+  }
+
+  .testimonios-grid {
+
+    gap: 15px;
+
+  }
+
+}
+
+
+/* =================================
+   REDUCIR MOVIMIENTO
+================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .testimonios-grid {
+
+    transform: none !important;
+
+  }
+
+  .testimonio-card {
+
+    transition: none;
+
+  }
+
+}
