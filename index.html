@@ -40,6 +40,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/testimonios.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="shortcut icon" href="images/logo.jpg" type="image/x-icon">
   
@@ -1156,7 +1157,7 @@ bottom:15px;
 
   </div>
 
-  <p class="sub">Mantenimiento TI Hardware & Software</p>
+  <p class="sub">Soporte Tecnológico Empresarial</p>
 
   <div class="carousel-container">
 
@@ -1175,7 +1176,7 @@ bottom:15px;
 
   <div class="plan">
     <h3>Pro</h3>
-    <h4>$79.000 COP / MES</h4>
+    <h4>$99.000 COP / MES</h4>
     <ul>
       <li>Mantenimiento preventivo</li>
       <li>Diagnóstico técnico</li>
@@ -1187,7 +1188,7 @@ bottom:15px;
   <div class="plan destacado">
     <span class="badge">Más popular</span>
     <h3>Empresarial</h3>
-    <h4>$129.000 COP / MES</h4>
+    <h4>$199.000 COP / MES</h4>
     <ul>
       <li>Hardware y Software</li>
       <li>Mantenimiento programado</li>
@@ -1245,7 +1246,7 @@ Contratar
 
         <div class="avatar">
           <img
-            src="images/ASESOR VIRTUAL.webp"
+            src="https://images.pexels.com/photos/3764545/pexels-photo-3764545.jpeg"
             alt="Cliente Confidencial"
             loading="lazy"
             decoding="async"
@@ -1264,7 +1265,7 @@ Contratar
       </div>
 
       <p class="testimonio-texto">
-        “Excelente producto y excelente servicio. INNOVENT nos brindó una solución tecnológica rápida, profesional y completamente adaptada a las necesidades de nuestro negocio. Destacamos especialmente la calidad de la atención, el acompañamiento durante todo el proceso y el compromiso demostrado para encontrar una solución eficiente. Sin duda, una experiencia satisfactoria y un servicio que recomendamos.”
+        “¡Excelente producto! Muy buena calidad, excelente presentación y totalmente recomendado. Una muy buena opción para quienes buscan tecnología confiable y de calidad.”
       </p>
 
       <div class="testimonio-footer">
@@ -1313,7 +1314,7 @@ Contratar
 
 
     <!-- TESTIMONIO 3 -->
-    <article class="testimonio-card">
+    <!--<article class="testimonio-card">
 
       <div class="testimonio-top">
 
@@ -1348,7 +1349,7 @@ Contratar
         <span>✓</span>
       </div>
 
-    </article>
+    </article>-->
 
 
     <!-- TESTIMONIO 4 
@@ -1395,7 +1396,7 @@ Contratar
 
         <div class="avatar">
           <img
-            src="images/ASESOR VIRTUAL.webp"
+            src="https://images.pexels.com/photos/36512355/pexels-photo-36512355.jpeg"
             alt="Cliente Confidencial"
             loading="lazy"
             decoding="async"
@@ -1404,7 +1405,7 @@ Contratar
 
         <div class="testimonio-info">
           <h3>Cliente Confidencial</h3>
-          <span>Comprador aliado</span>
+          <!--<span>Comprador aliado</span>-->
         </div>
 
       </div>
@@ -1424,10 +1425,83 @@ Contratar
 
     </article>
 
+    <!-- TESTIMONIO 6 -->
+    <article class="testimonio-card">
+
+      <div class="testimonio-top">
+
+        <div class="avatar">
+          <img
+            src="https://images.pexels.com/photos/3812723/pexels-photo-3812723.jpeg"
+            alt="Cliente Confidencial"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+
+        <div class="testimonio-info">
+          <h3>Cliente Confidencial</h3>
+          <!--<span>Comprador aliado</span>-->
+        </div>
+
+      </div>
+
+      <div class="estrellas">
+        ★★★★
+      </div>
+
+      <p class="testimonio-texto">
+        “Encontramos en INNOVENT un aliado tecnológico para
+        fortalecer nuestros procesos y mantener nuestros equipos
+        funcionando de manera eficiente.”
+      </p>
+
+      <div class="testimonio-footer">
+        <span>Cliente verificado</span>
+        <span>✓</span>
+      </div>
+
+    </article>
+
+    <!-- TESTIMONIO 7 -->
+    <article class="testimonio-card">
+
+      <div class="testimonio-top">
+
+        <div class="avatar">
+          <img
+            src="https://images.pexels.com/photos/13905955/pexels-photo-13905955.jpeg"
+            alt="Cliente Confidencial"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+
+        <div class="testimonio-info">
+          <h3>Cliente Confidencial</h3>
+          <!--<span>Comprador aliado</span>-->
+        </div>
+
+      </div>
+
+      <div class="estrellas">
+        ★★★★
+      </div>
+
+      <p class="testimonio-texto">
+        “Excelente producto, cumple con lo prometido y tiene una muy buena relación entre calidad y precio. Totalmente recomendado.”
+      </p>
+
+      <div class="testimonio-footer">
+        <span>Cliente verificado</span>
+        <span>✓</span>
+      </div>
+
+    </article>
+
   </div>
 
 </section>
-
 
 <style>
 
@@ -2120,7 +2194,7 @@ Síguenos
 
 <p>
 
-© 2020 INNOVENT SERVICIOS TI | Todos los derechos reservados
+© 2026 INNOVENT SERVICIOS TI | Todos los derechos reservados
 
 </p>
 
@@ -2424,6 +2498,151 @@ navLinks.forEach(link => {
 });
 
 </script>
+
+```html
+<script>
+(function () {
+
+  const track = document.getElementById("testimoniosTrack");
+
+  if (!track) return;
+
+  let position = 0;
+  let speed = 0.45;
+  let paused = false;
+
+  /* ==========================================
+     DUPLICAR TARJETAS
+     Permite crear un desplazamiento infinito
+  ========================================== */
+
+  const cards = Array.from(
+    track.querySelectorAll(".testimonio-card")
+  );
+
+  cards.forEach(card => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    track.appendChild(clone);
+  });
+
+
+  /* ==========================================
+     ANIMACIÓN AUTOMÁTICA
+  ========================================== */
+
+  function moverCarrusel() {
+
+    if (!paused) {
+
+      position -= speed;
+
+      const mitad = track.scrollWidth / 2;
+
+      /*
+       * Cuando llegamos a la mitad,
+       * reiniciamos la posición sin que
+       * el usuario perciba el salto.
+       */
+
+      if (Math.abs(position) >= mitad) {
+        position = 0;
+      }
+
+      track.style.transform =
+        `translate3d(${position}px, 0, 0)`;
+    }
+
+    requestAnimationFrame(moverCarrusel);
+  }
+
+
+  /* ==========================================
+     PAUSAR CON EL MOUSE
+  ========================================== */
+
+  track.addEventListener("mouseenter", function () {
+    paused = true;
+  });
+
+  track.addEventListener("mouseleave", function () {
+    paused = false;
+  });
+
+
+  /* ==========================================
+     PAUSAR AL TOCAR EN MÓVIL
+  ========================================== */
+
+  track.addEventListener("touchstart", function () {
+    paused = true;
+  }, { passive: true });
+
+
+  track.addEventListener("touchend", function () {
+
+    setTimeout(function () {
+      paused = false;
+    }, 1200);
+
+  }, { passive: true });
+
+
+  /* ==========================================
+     VELOCIDAD ADAPTABLE
+  ========================================== */
+
+  function actualizarVelocidad() {
+
+    if (window.innerWidth <= 600) {
+
+      speed = 0.30;
+
+    } else if (window.innerWidth <= 900) {
+
+      speed = 0.38;
+
+    } else {
+
+      speed = 0.45;
+
+    }
+
+  }
+
+
+  actualizarVelocidad();
+
+  window.addEventListener(
+    "resize",
+    actualizarVelocidad
+  );
+
+
+  /* ==========================================
+     RESPETAR REDUCCIÓN DE MOVIMIENTO
+  ========================================== */
+
+  if (
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
+  ) {
+
+    speed = 0;
+
+  }
+
+
+  /* ==========================================
+     INICIAR
+  ========================================== */
+
+  moverCarrusel();
+
+})();
+</script>
+```
 
 </body>
 </html>
