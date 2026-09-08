@@ -1,0 +1,1391 @@
+/* =========================================================
+   ASESOR VIRTUAL TABOTI
+   VENTANA EMERGENTE 100% RESPONSIVE
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTENEDOR
+   ========================================================= */
+
+.asesor-container {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 999999;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =========================================================
+   BOTÓN FLOTANTE
+   ========================================================= */
+
+#chat-toggle {
+    width: 68px;
+    height: 68px;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+#chat-toggle img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+#chat-toggle:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================================
+   VENTANA EMERGENTE
+   ========================================================= */
+
+#chatbox {
+    position: absolute;
+
+    right: 0;
+    bottom: 85px;
+
+    width: 380px;
+
+    /*
+       Altura máxima sin superar la pantalla
+    */
+    height: min(
+        600px,
+        calc(100dvh - 110px)
+    );
+
+    min-height: 400px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform:
+        translateY(20px)
+        scale(0.96);
+
+    transform-origin: bottom right;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* =========================================================
+   VENTANA ABIERTA
+   ========================================================= */
+
+#chatbox.active {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+#chat-header {
+    flex-shrink: 0;
+
+    min-height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 12px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d6efd,
+            #084298
+        );
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.chat-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.chat-avatar {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    font-size: 21px;
+}
+
+.chat-title > div {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-title strong {
+    font-size: 16px;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+.chat-title small {
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    opacity: 0.85;
+}
+
+
+/* =========================================================
+   BOTÓN CERRAR
+   ========================================================= */
+
+#chat-close {
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.15);
+
+    color: #ffffff;
+
+    font-size: 27px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+#chat-close:hover {
+    background:
+        rgba(255, 255, 255, 0.25);
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   MENSAJES
+   ========================================================= */
+
+#chat-messages {
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    width: 100%;
+
+    padding: 16px;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    background: #f8fafc;
+
+    -webkit-overflow-scrolling: touch;
+
+    overscroll-behavior: contain;
+}
+
+
+/* Scroll */
+#chat-messages::-webkit-scrollbar {
+    width: 5px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   MENSAJES
+   ========================================================= */
+
+.message {
+    width: fit-content;
+
+    max-width: 85%;
+
+    margin-bottom: 10px;
+
+    padding: 10px 13px;
+
+    border-radius: 15px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+
+    word-break: break-word;
+
+    animation:
+        messageAppear 0.25s ease;
+}
+
+
+@keyframes messageAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* Bot */
+
+.bot-message {
+    margin-right: auto;
+
+    background: #ffffff;
+
+    color: #1f2937;
+
+    border-bottom-left-radius: 5px;
+
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Usuario */
+
+.user-message {
+    margin-left: auto;
+
+    background: #0d6efd;
+
+    color: #ffffff;
+
+    border-bottom-right-radius: 5px;
+}
+
+
+/* =========================================================
+   OPCIONES
+   ========================================================= */
+
+.taboti-options {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    width: 100%;
+
+    margin-top: 8px;
+}
+
+.taboti-options button {
+    width: 100%;
+
+    min-height: 44px;
+
+    padding: 9px 12px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: #1f2937;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.taboti-options button:hover {
+    background: #eff6ff;
+
+    border-color: #0d6efd;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   TABOTI ESCRIBIENDO
+   ========================================================= */
+
+.typing-message {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+.typing-message > span:first-child {
+    font-size: 12px;
+
+    color: #64748b;
+}
+
+.typing-dots {
+    display: inline-flex;
+
+    gap: 3px;
+}
+
+.typing-dots i {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #64748b;
+
+    animation:
+        typingAnimation 1.2s infinite ease-in-out;
+}
+
+.typing-dots i:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.typing-dots i:nth-child(3) {
+    animation-delay: 0.30s;
+}
+
+@keyframes typingAnimation {
+
+    0%,
+    60%,
+    100% {
+        opacity: 0.3;
+        transform: translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(-3px);
+    }
+}
+
+
+/* =========================================================
+   WHATSAPP
+   ========================================================= */
+
+.whatsapp-contact {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 12px;
+
+    border-radius: 13px;
+
+    background: #f0fdf4;
+
+    border: 1px solid #bbf7d0;
+}
+
+.whatsapp-contact p {
+    margin: 0 0 10px;
+
+    color: #166534;
+
+    font-size: 12px;
+
+    line-height: 1.45;
+}
+
+.whatsapp-btn {
+    width: 100%;
+
+    min-height: 42px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #22c55e;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+#chat-input {
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #e5e7eb;
+}
+
+#chat-input input {
+    flex: 1;
+
+    min-width: 0;
+
+    width: 100%;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 11px;
+
+    outline: none;
+
+    background: #f9fafb;
+
+    color: #1f2937;
+
+    /*
+       16px evita zoom automático en iPhone
+    */
+    font-size: 16px;
+}
+
+#chat-input input:focus {
+    border-color: #0d6efd;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(13, 110, 253, 0.10);
+}
+
+
+/* =========================================================
+   BOTÓN ENVIAR
+   ========================================================= */
+
+#chat-send {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #0d6efd;
+
+    color: #ffffff;
+
+    font-size: 19px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   REDES SOCIALES
+   ========================================================= */
+
+#chat-social {
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 8px 10px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #f1f5f9;
+}
+
+#chat-social a {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease;
+}
+
+#chat-social a:hover {
+    transform:
+        translateY(-2px)
+        scale(1.08);
+}
+
+#chat-social img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .asesor-container {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    #chatbox {
+        width: min(
+            380px,
+            calc(100vw - 30px)
+        );
+
+        height: min(
+            620px,
+            calc(100dvh - 90px)
+        );
+    }
+}
+
+
+/* =========================================================
+   MÓVILES
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .asesor-container {
+        right: 10px;
+        bottom: 10px;
+    }
+
+    #chat-toggle {
+        width: 58px;
+        height: 58px;
+    }
+
+    /*
+       CLAVE:
+       En móvil la ventana se posiciona
+       directamente respecto al viewport.
+    */
+
+    #chatbox {
+        position: fixed;
+
+        top: 8px;
+        right: 8px;
+        bottom: 8px;
+        left: 8px;
+
+        width: auto;
+
+        height: auto;
+
+        min-height: 0;
+
+        max-height: none;
+
+        border-radius: 18px;
+
+        transform-origin: center;
+    }
+
+    #chat-header {
+        min-height: 62px;
+
+        padding: 9px 11px;
+    }
+
+    .chat-avatar {
+        width: 37px;
+        height: 37px;
+
+        font-size: 18px;
+    }
+
+    .chat-title strong {
+        font-size: 15px;
+    }
+
+    .chat-title small {
+        font-size: 11px;
+    }
+
+    #chat-close {
+        width: 34px;
+        height: 34px;
+
+        font-size: 24px;
+    }
+
+    #chat-messages {
+        padding: 12px 10px;
+    }
+
+    .message {
+        max-width: 90%;
+
+        padding: 9px 11px;
+
+        font-size: 13px;
+    }
+
+    .taboti-options button {
+        min-height: 43px;
+
+        font-size: 12px;
+    }
+
+    #chat-input {
+        padding: 8px;
+    }
+
+    #chat-input input {
+        height: 42px;
+
+        font-size: 16px;
+    }
+
+    #chat-send {
+        width: 42px;
+        height: 42px;
+
+        flex-basis: 42px;
+    }
+
+    #chat-social {
+        gap: 7px;
+
+        padding: 7px;
+    }
+
+    #chat-social a {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .asesor-container {
+        right: 8px;
+        bottom: 8px;
+    }
+
+    #chat-toggle {
+        width: 54px;
+        height: 54px;
+    }
+
+    #chatbox {
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        left: 5px;
+
+        border-radius: 15px;
+    }
+
+    #chat-header {
+        min-height: 58px;
+
+        padding: 8px 9px;
+    }
+
+    .chat-avatar {
+        width: 34px;
+        height: 34px;
+
+        font-size: 17px;
+    }
+
+    .chat-title {
+        gap: 7px;
+    }
+
+    .chat-title strong {
+        font-size: 14px;
+    }
+
+    .chat-title small {
+        font-size: 10px;
+    }
+
+    #chat-messages {
+        padding: 9px 8px;
+    }
+
+    .message {
+        max-width: 94%;
+
+        padding: 8px 9px;
+
+        font-size: 12px;
+    }
+
+    .taboti-options {
+        gap: 6px;
+    }
+
+    .taboti-options button {
+        min-height: 40px;
+
+        padding: 8px 9px;
+
+        font-size: 11px;
+    }
+
+    #chat-input {
+        gap: 6px;
+
+        padding: 6px;
+    }
+
+    #chat-input input {
+        height: 40px;
+
+        padding: 0 9px;
+    }
+
+    #chat-send {
+        width: 40px;
+        height: 40px;
+
+        flex-basis: 40px;
+    }
+
+    #chat-social {
+        gap: 5px;
+
+        padding: 6px;
+    }
+
+    #chat-social a {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES MUY PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 350px) {
+
+    #chatbox {
+        top: 3px;
+        right: 3px;
+        bottom: 3px;
+        left: 3px;
+    }
+
+    .chat-avatar {
+        width: 32px;
+        height: 32px;
+
+        font-size: 15px;
+    }
+
+    .chat-title strong {
+        font-size: 13px;
+    }
+
+    #chat-close {
+        width: 31px;
+        height: 31px;
+
+        font-size: 22px;
+    }
+
+    #chat-messages {
+        padding: 8px 7px;
+    }
+
+    .message {
+        max-width: 96%;
+
+        font-size: 11.5px;
+    }
+
+    .taboti-options button {
+        min-height: 38px;
+
+        font-size: 10.5px;
+    }
+
+    #chat-social a {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+
+/* =========================================================
+   MODO HORIZONTAL
+   ========================================================= */
+
+@media (max-width: 768px) and (orientation: landscape) {
+
+    #chatbox {
+        top: 5px;
+        bottom: 5px;
+
+        height: auto;
+    }
+
+    #chat-header {
+        min-height: 50px;
+
+        padding: 6px 10px;
+    }
+
+    .chat-avatar {
+        width: 31px;
+        height: 31px;
+    }
+
+    #chat-messages {
+        padding: 7px 10px;
+    }
+
+    #chat-input {
+        padding: 5px 8px;
+    }
+
+    #chat-social {
+        padding: 4px 8px;
+    }
+
+    #chat-social a {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+
+/* =========================================================
+   POCA ALTURA DE PANTALLA
+   ========================================================= */
+
+@media (max-height: 500px) {
+
+    #chatbox {
+        top: 5px;
+        bottom: 5px;
+
+        height: auto;
+
+        min-height: 0;
+    }
+
+    #chat-header {
+        min-height: 50px;
+    }
+
+    #chat-messages {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+    #chat-social {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+}
+
+
+/* =========================================================
+   SAFE AREA - IPHONE / NOTCH
+   ========================================================= */
+
+@supports (padding: max(0px)) {
+
+    @media (max-width: 600px) {
+
+        #chatbox {
+            top: max(
+                5px,
+                env(safe-area-inset-top)
+            );
+
+            right: max(
+                5px,
+                env(safe-area-inset-right)
+            );
+
+            bottom: max(
+                5px,
+                env(safe-area-inset-bottom)
+            );
+
+            left: max(
+                5px,
+                env(safe-area-inset-left)
+            );
+        }
+    }
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+   ========================================================= */
+
+button,
+input,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(13, 110, 253, 0.30);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCIR ANIMACIONES
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #chat-toggle,
+    #chatbox,
+    #chat-close,
+    #chat-send,
+    #chat-social a,
+    .taboti-options button,
+    .message {
+        animation: none !important;
+
+        transition: none !important;
+    }
+
+    #chat-messages {
+        scroll-behavior: auto;
+    }
+}
+
+
+/* =========================================================
+   FALLBACK PARA NAVEGADORES SIN 100dvh
+   ========================================================= */
+
+@supports not (height: 100dvh) {
+
+    #chatbox {
+        height: min(
+            600px,
+            calc(100vh - 110px)
+        );
+    }
+
+    @media (max-width: 768px) {
+
+        #chatbox {
+            height: calc(100vh - 90px);
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        #chatbox {
+            height: auto;
+        }
+    }
+}
+
+/* =========================================================
+   VARIABLES CONTROLADAS POR JAVASCRIPT
+   ========================================================= */
+
+:root {
+    --taboti-vh: 100vh;
+    --taboti-vw: 100vw;
+}
+
+
+/* =========================================================
+   ESCRITORIO
+   ========================================================= */
+
+#chatbox {
+    width: 380px;
+
+    height: min(
+        600px,
+        calc(100vh - 110px)
+    );
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    #chatbox {
+
+        position: fixed;
+
+        top: 8px;
+        right: 8px;
+        bottom: 8px;
+        left: 8px;
+
+        width: auto;
+
+        /*
+           Utilizamos el viewport real calculado
+           por JavaScript.
+        */
+
+        height: calc(
+            var(--taboti-vh) - 16px
+        );
+
+        min-height: 0;
+
+        max-height: none;
+
+        margin: 0;
+
+        border-radius: 18px;
+
+        transform-origin: center center;
+    }
+
+
+    /*
+       Cuando el teclado está abierto,
+       el viewport disminuye automáticamente.
+    */
+
+    body.taboti-mobile #chatbox {
+        max-height:
+            calc(var(--taboti-vh) - 16px);
+    }
+
+
+    /*
+       Evita que los elementos internos
+       provoquen desbordamiento.
+    */
+
+    #chat-messages {
+        min-height: 0;
+
+        flex: 1 1 auto;
+
+        overflow-y: auto;
+    }
+
+
+    #chat-input {
+        flex-shrink: 0;
+    }
+
+
+    #chat-social {
+        flex-shrink: 0;
+    }
+}
+
+
+/* =========================================================
+   MÓVIL HORIZONTAL
+   ========================================================= */
+
+@media (max-width: 768px) and (orientation: landscape) {
+
+    #chatbox {
+
+        top: 5px;
+        bottom: 5px;
+
+        left: 5px;
+        right: 5px;
+
+        height: calc(
+            var(--taboti-vh) - 10px
+        );
+
+        border-radius: 14px;
+    }
+
+
+    #chat-header {
+        min-height: 52px;
+
+        padding: 6px 10px;
+    }
+
+
+    #chat-messages {
+        padding: 8px 10px;
+    }
+
+
+    #chat-input {
+        padding: 6px 8px;
+    }
+
+
+    #chat-social {
+        padding: 5px 8px;
+    }
+}
+
+
+/* =========================================================
+   PANTALLAS MUY BAJAS
+   ========================================================= */
+
+@media (max-height: 500px) {
+
+    #chatbox {
+
+        top: 4px;
+        bottom: 4px;
+
+        height: calc(
+            var(--taboti-vh) - 8px
+        );
+
+        min-height: 0;
+    }
+
+
+    #chat-header {
+        min-height: 48px;
+    }
+
+
+    #chat-messages {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
+
+
+    #chat-social {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    #chatbox {
+
+        top: 4px;
+        right: 4px;
+        bottom: 4px;
+        left: 4px;
+
+        height: calc(
+            var(--taboti-vh) - 8px
+        );
+
+        border-radius: 15px;
+    }
+}
+
+
+/* =========================================================
+   CELULARES MUY PEQUEÑOS
+   ========================================================= */
+
+@media (max-width: 350px) {
+
+    #chatbox {
+
+        top: 3px;
+        right: 3px;
+        bottom: 3px;
+        left: 3px;
+
+        height: calc(
+            var(--taboti-vh) - 6px
+        );
+    }
+}
+
